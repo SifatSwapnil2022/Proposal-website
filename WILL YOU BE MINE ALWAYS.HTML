@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Marry Me?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #ffccff; /* Baby pink color */
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        #flowers {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        #flowerImages {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none; /* Prevent interactions with the flowers */
+        }
+        #flowerImages img {
+            max-width: 200px; /* Increased size of flower images */
+            margin: 10px;
+            opacity: 0.9; /* Slight transparency for a softer look */
+        }
+        #noImage {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ff1493;
+        }
+        h1 {
+            color: white; /* Changed to white */
+            font-weight: bold; /* Made text bold */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="question">
+        <h1>Will you marry me?</h1>
+        <button id="yesBtn">Yes</button>
+        <button id="noBtn">No</button>
+    </div>
+    
+    <div id="flowers">
+        <div id="flowerImages">
+            <img src="https://i.pinimg.com/originals/0f/75/1c/0f751ceec26f3c821679d1b5849badbb.gif" alt="Flower 1">
+            <img src="https://i.pinimg.com/originals/4e/52/d3/4e52d3f490c8e7682d70c0e184ad541e.gif" alt="Flower 2">
+            <img src="https://i.pinimg.com/originals/23/c9/35/23c935fdbc1c21f30488001341523a98.gif" alt="Flower 3">
+            <img src="https://i.pinimg.com/originals/19/b9/f0/19b9f03b44d82f418c31a2c10f1ef106.gif" alt="Flower 4">
+            <img src="https://i.pinimg.com/originals/22/67/b2/2267b22aa729c50fbb2943beffb6df7c.gif" alt="Flower 5">
+        </div>
+    </div>
+
+    <div id="noImage">
+        <img src="https://i.pinimg.com/originals/5c/e8/f8/5ce8f83e6ebcb650f8aacdec0c7432cf.jpg" alt="No Response" style="max-width: 100%; height: auto;">
+    </div>
+
+    <script>
+        document.getElementById("yesBtn").addEventListener("click", function() {
+            document.getElementById("flowers").style.display = "block";
+            document.getElementById("question").style.display = "none";
+            document.getElementById("noImage").style.display = "none"; // Hide no image
+        });
+
+        document.getElementById("noBtn").addEventListener("click", function() {
+            document.getElementById("noImage").style.display = "block"; // Show no image
+            document.getElementById("question").style.display = "none"; // Hide question
+            let cursorMove = setInterval(function() {
+                const x = Math.random() * (window.innerWidth - 50);
+                const y = Math.random() * (window.innerHeight - 50);
+                document.body.style.cursor = `url('https://i.pinimg.com/originals/5c/e8/f8/5ce8f83e6ebcb650f8aacdec0c7432cf.jpg'), auto`;
+            }, 1000);
+        });
+
+        // Stop cursor movement on mouse move
+        document.addEventListener('mousemove', function() {
+            clearInterval(cursorMove);
+            document.body.style.cursor = 'auto'; // Reset to default cursor
+        });
+    </script>
+
+</body>
+</html>
